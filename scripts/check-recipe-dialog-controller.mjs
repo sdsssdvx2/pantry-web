@@ -1,0 +1,47 @@
+import fs from 'node:fs';
+
+const read=path=>fs.readFileSync(path,'utf8');
+const fail=message=>{throw new Error(message);};
+const expect=(condition,message)=>{if(!condition)fail(message);};
+const app=read('public/app.js'),controller=read('public/recipe-dialog-controller.js'),view=read('public/recipe-view-controller.js'),adminUI=read('public/admin-ui.css');
+
+expect(controller.includes('export function installRecipeDialogController'),'Recipe dialog controller must expose explicit installation');
+expect(app.includes("import {installRecipeDialogController} from './recipe-dialog-controller.js"),'app.js must import the recipe dialog controller');
+expect(app.includes('closeRecipe:recipeView.closeRecipe'),'Recipe dialog close must be injected from the installed recipe view controller');
+expect(app.includes('canRecordCooked:canSaveKitchenState'),'Recipe dialog must receive the owner write capability explicitly');
+expect(app.includes('installRecipeDialogController({'),'app.js must install the recipe dialog controller once');
+expect(!app.includes("$('recipe-dialog').addEventListener('change'"),'Variant change events must not return to app.js');
+expect(!app.includes("$('recipe-dialog').addEventListener('click'"),'Recipe dialog mutation events must not return to app.js');
+expect(controller.includes("dialog.addEventListener('change'"),'Recipe dialog controller must own variant changes');
+expect(controller.includes("dialog.addEventListener('click'"),'Recipe dialog controller must own detail actions');
+expect(controller.includes("event.target.closest('#mark-cooked')"),'Recipe dialog controller must own recent cooking creation');
+expect(controller.includes("event.target.closest('#mark-cooked-cook')"),'Recipe dialog controller must let focused cooking mode record completion without leaving the cooking view');
+expect(controller.includes("cookModeRecord.textContent='✓ 방금 기록됨'"),'Focused cooking mode must give immediate saved feedback and prevent accidental duplicate clicks');
+expect(controller.includes("event.target.closest('#clear-cooked')"),'Recipe dialog controller must own latest cooking-record removal');
+expect(controller.includes("event.target.closest('[data-remove-cooked]')"),'Recipe dialog controller must own exact historical cooking-record removal');
+expect(controller.includes("import {addCookingRecord,removeCookingRecord,replaceCookingRecord} from './cooking-history.js';"),'Recipe dialog controller must use cumulative cooking-history helpers');
+expect(controller.includes("event.target.closest('#add-cooked-record')"),'Recipe dialog controller must support backfilling older cooking records');
+expect(controller.includes("event.target.closest?.('[data-edit-cooked]')"),'Recipe dialog controller must support editing an existing cooking timestamp');
+expect(controller.includes('if(!canRecordCooked())return;'),'Recent cooking mutations must refuse read-only sessions even if invoked indirectly');
+expect(controller.includes("applyContext({cookingHistory:previous});return;"),'Cooking-history mutations must rollback when persistence fails');
+expect(adminUI.includes('html[data-access="shared-viewer"] .recipe-manage,'),'Family viewer must hide the owner-only recipe management action group');
+expect(controller.includes("recipeEditor.open(recipe,false,true)"),'Add-version action must still hand off to the recipe editor');
+expect(controller.includes("recipeEditor.open(recipe,true)"),'Duplicate action must still hand off to the recipe editor');
+expect(controller.includes("applyContext({hiddenSources:previous});return;"),'Source hide must rollback when persistence fails');
+expect(controller.includes("applyContext({sourceEdits:previous});return;"),'Source edit reset must rollback when persistence fails');
+expect(controller.includes("applyContext({hiddenVariants:previous});return;"),'Variant hide must rollback when persistence fails');
+expect(controller.includes("applyContext(previous);return;"),'Custom recipe deletion must rollback all related state on failed persistence');
+expect(controller.includes('delete nextCookingHistory[recipe.id]'),'Permanent custom recipe deletion must remove its cumulative cooking history');
+expect(controller.includes('variantStateKey(recipe.id,recipe.variantKey)'),'Variant hiding must retain canonical variant state keys');
+expect(view.includes("$('recipe-dialog').addEventListener('close',()=>{if(lastFocus?.isConnected)lastFocus.focus();})"),'Recipe view controller must retain cross-view focus restoration after recipe dialog closes');
+
+const {addCookingRecord,removeCookingRecord,replaceCookingRecord,latestCookedAt,cookingCount}=await import('../public/cooking-history.js');
+let history={};
+history=addCookingRecord(history,'recipe-a','2026-09-10T12:00:00.000Z');
+history=addCookingRecord(history,'recipe-a','2026-09-15T12:00:00.000Z');
+expect(cookingCount(history,'recipe-a')===2&&latestCookedAt(history,'recipe-a')==='2026-09-15T12:00:00.000Z','Cooking history must accumulate and sort records newest-first');
+history=replaceCookingRecord(history,'recipe-a','2026-09-10T12:00:00.000Z','2026-09-12T18:30:00.000Z');
+expect(history['recipe-a'].includes('2026-09-12T18:30:00.000Z')&&!history['recipe-a'].includes('2026-09-10T12:00:00.000Z'),'Cooking history must replace an edited timestamp without retaining the old value');
+history=removeCookingRecord(history,'recipe-a','2026-09-15T12:00:00.000Z');
+expect(cookingCount(history,'recipe-a')===1&&latestCookedAt(history,'recipe-a')==='2026-09-12T18:30:00.000Z','Removing one cooking record must preserve the remaining history');
+console.log('Recipe dialog controller boundary check passed.');

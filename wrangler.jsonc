@@ -1,0 +1,31 @@
+{
+  "name": "my-little-kitchen",
+  "main": "./src/access-entry.js",
+  "compatibility_date": "2026-09-13",
+  "keep_vars": true,
+  "build": {
+    // Runs the repository checks and prepares deploy-version.txt before Wrangler deploys.
+    "command": "node scripts/cloudflare-build.mjs"
+  },
+  "triggers": {
+    // Hourly: the Worker runs the daily backup only in the 14:55 UTC (23:55 KST)
+    // slot and publishes the AI snapshot when AI_SNAPSHOT_GITHUB_TOKEN is set.
+    "crons": ["55 * * * *"]
+  },
+  "browser": {
+    "binding": "BROWSER"
+  },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/*", "!/*.css", "!/fonts/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "my-little-kitchen-db",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

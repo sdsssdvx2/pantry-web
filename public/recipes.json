@@ -1,0 +1,169 @@
+[
+  {
+    "id": "sample-1",
+    "name": "달걀말이",
+    "category": "side",
+    "effort": 2,
+    "time": 15,
+    "required": [
+      "달걀",
+      "대파",
+      "소금",
+      "식용유"
+    ],
+    "optional": [],
+    "summary": "달걀을 풀어 대파를 섞고 약불에서 말아 익혀요.",
+    "steps": [
+      "달걀 3개를 풀고 소금 한 꼬집, 다진 대파를 섞어요.",
+      "기름 두른 팬에 얇게 부어 말아 가며 익혀요."
+    ],
+    "note": "",
+    "variants": [
+      {
+        "key": "s1",
+        "label": "기본",
+        "sourceFile": "sample-notes.txt",
+        "sourceLine": 1,
+        "sourceTitle": "• 달걀말이",
+        "original": "• 달걀말이\n달걀 3개를 풀고 소금 한 꼬집, 다진 대파를 섞어요.\n기름 두른 팬에 얇게 부어 말아 가며 익혀요.",
+        "required": [
+          "달걀",
+          "대파",
+          "소금",
+          "식용유"
+        ],
+        "optional": [],
+        "time": 15
+      }
+    ],
+    "source": true
+  },
+  {
+    "id": "sample-2",
+    "name": "토마토 파스타",
+    "category": "noodles",
+    "effort": 2,
+    "time": 20,
+    "required": [
+      "스파게티면",
+      "토마토 소스",
+      "마늘",
+      "올리브유",
+      "소금"
+    ],
+    "optional": [
+      "파슬리"
+    ],
+    "summary": "마늘을 올리브유에 볶고 토마토 소스에 삶은 면을 버무려요.",
+    "steps": [
+      "소금물에 스파게티면을 삶아요.",
+      "올리브유에 편 마늘을 볶고 토마토 소스를 데워요.",
+      "면을 넣고 버무려요."
+    ],
+    "note": "",
+    "variants": [
+      {
+        "key": "s2",
+        "label": "기본",
+        "sourceFile": "sample-notes.txt",
+        "sourceLine": 1,
+        "sourceTitle": "• 토마토 파스타",
+        "original": "• 토마토 파스타\n소금물에 스파게티면을 삶아요.\n올리브유에 편 마늘을 볶고 토마토 소스를 데워요.\n면을 넣고 버무려요.",
+        "required": [
+          "스파게티면",
+          "토마토 소스",
+          "마늘",
+          "올리브유",
+          "소금"
+        ],
+        "optional": [
+          "파슬리"
+        ],
+        "time": 20
+      }
+    ],
+    "source": true
+  },
+  {
+    "id": "sample-3",
+    "name": "감자볶음",
+    "category": "side",
+    "effort": 2,
+    "time": 20,
+    "required": [
+      "감자",
+      "양파",
+      "식용유",
+      "소금"
+    ],
+    "optional": [],
+    "summary": "채 썬 감자와 양파를 볶아 소금으로 간해요.",
+    "steps": [
+      "감자와 양파를 가늘게 채 썰어요.",
+      "기름에 감자를 먼저 볶다가 양파를 넣고 소금으로 간해요."
+    ],
+    "note": "",
+    "variants": [
+      {
+        "key": "s3",
+        "label": "기본",
+        "sourceFile": "sample-notes.txt",
+        "sourceLine": 1,
+        "sourceTitle": "• 감자볶음",
+        "original": "• 감자볶음\n감자와 양파를 가늘게 채 썰어요.\n기름에 감자를 먼저 볶다가 양파를 넣고 소금으로 간해요.",
+        "required": [
+          "감자",
+          "양파",
+          "식용유",
+          "소금"
+        ],
+        "optional": [],
+        "time": 20
+      }
+    ],
+    "source": true
+  },
+  {
+    "id": "sample-4",
+    "name": "된장국",
+    "category": "soup",
+    "effort": 2,
+    "time": 20,
+    "required": [
+      "된장",
+      "두부",
+      "애호박",
+      "양파"
+    ],
+    "optional": [
+      "대파"
+    ],
+    "summary": "멸치 육수나 물에 된장을 풀고 채소와 두부를 넣어 끓여요.",
+    "steps": [
+      "물에 된장을 풀어 끓여요.",
+      "애호박, 양파, 두부를 넣고 5분 더 끓여요."
+    ],
+    "note": "",
+    "variants": [
+      {
+        "key": "s4",
+        "label": "기본",
+        "sourceFile": "sample-notes.txt",
+        "sourceLine": 1,
+        "sourceTitle": "• 된장국",
+        "original": "• 된장국\n물에 된장을 풀어 끓여요.\n애호박, 양파, 두부를 넣고 5분 더 끓여요.",
+        "required": [
+          "된장",
+          "두부",
+          "애호박",
+          "양파"
+        ],
+        "optional": [
+          "대파"
+        ],
+        "time": 20
+      }
+    ],
+    "source": true
+  }
+]

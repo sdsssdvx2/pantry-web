@@ -1,0 +1,151 @@
+.arrived-button{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:auto;min-width:0;max-width:max-content;height:24px;min-height:0;margin:0 1px;padding:0 7px;border:1px solid rgba(194,151,55,.55);border-radius:999px;background:rgba(194,151,55,.10);color:inherit;font:inherit;font-size:12px;font-weight:700;line-height:22px;letter-spacing:0;white-space:nowrap;box-shadow:none}
+.stock-incoming{align-items:center;gap:4px}
+#ingredient-history{margin-top:10px;padding-top:7px}
+#ingredient-history>summary{font-size:13px;line-height:1.35}
+#ingredient-history>.field-help{font-size:12px;line-height:1.5;margin:4px 0 6px}
+#history-search{font-size:12px}
+#history-list{max-height:280px;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:4px;margin-top:4px}
+#history-list .history-item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 7px;padding:6px 2px;font-size:12px}
+#history-list .history-item>div:first-child{position:relative;min-width:0;padding-right:14px;cursor:pointer}
+#history-list .history-item>div:first-child::after{content:'›';position:absolute;right:1px;top:0;font-size:14px;line-height:1;opacity:.45;transform:rotate(0deg);transition:transform .12s ease}
+#history-list .history-item.history-expanded>div:first-child::after{transform:rotate(90deg)}
+#history-list .history-item strong{display:block;font-size:12.5px;line-height:1.4;font-weight:700}
+#history-list .history-item small{display:none;font-size:11.5px;line-height:1.5;margin-top:4px;opacity:.68}
+#history-list .history-item.history-expanded small{display:block}
+#history-list .history-actions{display:flex;align-items:center;gap:4px;flex-wrap:nowrap}
+#history-list .history-actions button{width:auto;min-width:0;min-height:0;height:30px;margin:0;padding:0 8px;font-size:12px;line-height:28px;white-space:nowrap}
+#history-list .history-actions .text-button{height:auto;line-height:1.2;padding:4px}
+.history-search-results{max-height:220px;overflow-y:auto;overscroll-behavior:contain}
+.history-search-results .history-inline-item{font-size:12px;padding:7px 0}
+.history-search-results .history-inline-item small{font-size:11.5px}
+.history-search-results .history-inline-item button{width:auto;min-height:0;padding:4px 7px;font-size:12px}
+
+.pantry-priority{margin:10px 0 12px;padding:10px;border:1px solid rgba(194,151,55,.32);border-radius:12px;background:rgba(244,234,212,.38)}
+.pantry-priority-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px;font-size:12px}
+.pantry-priority-head strong{font-size:12.5px}
+#pantry-priority-count{min-width:20px;text-align:center;font-size:11.5px;font-weight:700;opacity:.62}
+.pantry-priority-list{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;max-height:260px;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.priority-item{display:grid;grid-template-columns:minmax(0,1fr);gap:3px;width:100%;min-width:0;min-height:0;margin:0;padding:7px 8px;border:1px solid rgba(59,93,69,.12);border-radius:9px;background:rgba(255,255,255,.62);color:inherit;text-align:left;box-shadow:none}
+.priority-item span{min-width:0;white-space:normal;overflow-wrap:anywhere;font-size:12px;font-weight:700}
+.priority-item small{font-size:11.5px;white-space:normal;overflow-wrap:anywhere;opacity:.72}
+.priority-item.priority-overdue,.priority-item.priority-urgent{border-color:rgba(178,104,72,.30);background:rgba(211,130,96,.09)}
+.priority-item.priority-soon{border-color:rgba(194,151,55,.28)}
+.pantry-priority>p{margin:7px 1px 0;font-size:11.5px;line-height:1.5;opacity:.68}
+
+/* Pantry controls should stay readable without turning the compact sidebar into a second main column. */
+.pantry .tiny,.pantry .field-help,.pantry .text-button{font-size:12px}
+.pantry-intro,.pantry .add-row input,.pantry .add-row textarea,.pantry .search-box input,.pantry-selects select{font-size:12px}
+.ingredient-group>summary,.ingredient-group>summary span{font-size:12px}
+.ingredient-tag{font-size:12px}
+.ingredient-name small,.storage-scope,.pantry-foot{font-size:11.5px}
+
+@media(max-width:640px){
+  .pantry-selects{display:flex;grid-template-columns:none;justify-content:flex-start;align-items:center;gap:5px;flex-wrap:nowrap}
+  .pantry-selects .custom-select{flex:0 0 auto;width:max-content}
+  .pantry-selects .custom-select-trigger{width:max-content}
+  #ingredient-history{margin-top:8px;padding-top:6px}
+  #ingredient-history>.field-help{margin:3px 0 5px}
+  #history-list{max-height:250px;margin-top:3px}
+  #history-list .history-item{grid-template-columns:minmax(0,1fr) auto;padding:5px 1px;gap:3px 6px}
+  #history-list .history-actions{justify-content:flex-end}
+  #history-list .history-actions button{height:28px;padding:0 7px;line-height:26px}
+  .pantry-priority{margin-top:8px}
+}
+
+/* Keep the pantry footer informative without turning sync mechanics into body copy. */
+.pantry-foot{min-height:24px;padding-top:11px;transition:color .15s}
+.pantry-foot .saved-dot{transition:background-color .15s,box-shadow .15s}
+.pantry-foot[data-sync-kind="ok"] .saved-dot,.pantry-foot[data-sync-kind="remote"] .saved-dot{background:#728d64;box-shadow:0 0 0 3px rgba(114,141,100,.10)}
+.pantry-foot[data-sync-kind="pending"] .saved-dot,.pantry-foot[data-sync-kind="syncing"] .saved-dot{background:#bf963e;box-shadow:0 0 0 3px rgba(191,150,62,.10)}
+.pantry-foot[data-sync-kind="offline"] .saved-dot,.pantry-foot[data-sync-kind="conflict"] .saved-dot{background:#b16d4d;box-shadow:0 0 0 3px rgba(177,109,77,.10)}
+.pantry-foot[data-sync-kind="readonly"] .saved-dot{background:#899584;box-shadow:none}
+.pantry-foot[data-sync-kind="pending"],.pantry-foot[data-sync-kind="syncing"]{color:#9d7426}
+.pantry-foot[data-sync-kind="offline"],.pantry-foot[data-sync-kind="conflict"]{color:#a35f43}
+html[data-theme="dark"] .pantry-foot[data-sync-kind="pending"],
+html[data-theme="dark"] .pantry-foot[data-sync-kind="syncing"]{color:#d0a14d}
+html[data-theme="dark"] .pantry-foot[data-sync-kind="offline"],
+html[data-theme="dark"] .pantry-foot[data-sync-kind="conflict"]{color:#d68f70}
+
+.pantry-priority-tools{display:flex;align-items:center;gap:8px}
+#pantry-priority-toggle{font-size:11.5px}
+.pantry-selects{display:flex;justify-content:flex-start;align-items:center;gap:6px;flex-wrap:nowrap}
+.pantry-selects select{width:auto;max-width:none}
+html[data-theme="dark"] .pantry-priority{background:#2f2514;border-color:#5d4721}
+html[data-theme="dark"] .priority-item{background:#191b1b;border-color:#3a3e3f}
+html[data-theme="dark"] .priority-item.priority-overdue,
+html[data-theme="dark"] .priority-item.priority-urgent{background:#372923;border-color:#68463b}
+
+.ingredient-group>summary .pantry-group-icon{width:16px;height:16px;flex:0 0 16px;color:#74836f;stroke-width:1.65}
+.ingredient-group>summary .pantry-group-label{font-size:12px;font-weight:650;letter-spacing:.2px}
+.ingredient-group>summary .pantry-group-count{font-size:11px;font-weight:400;color:#8d9889}
+
+/* Keep the pantry heading stable when the group toggle label changes length. */
+.pantry-title-tools h2{display:flex;align-items:center;white-space:nowrap;flex:0 0 auto}
+@media(max-width:760px){
+ .pantry-title-tools{gap:4px;flex-wrap:nowrap;min-width:0}
+ .pantry-title-tools h2{font-size:16px;line-height:1.25}
+ .pantry-title-tools .count-badge{margin-left:4px}
+ .pantry-title-tools .pantry-copy-button,.pantry-title-tools .pantry-groups-toggle{font-size:10px;line-height:1.15;padding:3px 2px;white-space:nowrap}
+}
+
+/* Keep the original tag sizing, but reserve clear space at the pantry's right edge in every access mode. */
+.pantry-list{padding-right:2px}
+.ingredient-tags{padding-right:10px}
+
+/* Family shares keep their existing left inset; only mirror that inset on the scroll area's right edge. */
+.pantry{--pantry-inline-pad:21px}
+html[data-access="shared-viewer"] .ingredient-tags{padding-right:0}
+html[data-access="shared-viewer"] .pantry-list{padding-right:var(--pantry-inline-pad)}
+@media(max-width:1000px){.pantry{--pantry-inline-pad:16px}}
+@media(max-width:760px){.pantry{--pantry-inline-pad:18px}}
+
+.pantry-priority-order{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;max-height:480px;overflow-y:auto;overscroll-behavior:contain;padding:2px}
+.pantry-priority-order .ingredient-tag{display:flex;width:100%;min-width:0;box-sizing:border-box}
+.pantry-priority-order .ingredient-name{flex:1;min-width:0;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.ingredient-priority-date{display:block;margin-top:3px;opacity:.65;font-size:11px}
+#stock-priority-preview{white-space:pre-line}
+.priority-basis{margin:8px 0 16px;font-size:12px}
+.priority-basis>summary{cursor:pointer;opacity:.7}
+.priority-basis label{margin-top:12px}
+#stock-priority-reference:not([hidden]){display:block;margin-top:8px}
+
+
+/* Priority pantry rows keep the stock-detail target large and add a quick archive action. */
+.priority-item-row{display:flex;align-items:stretch;gap:5px;min-width:0}
+.priority-item-row .priority-item{flex:1 1 auto}
+.priority-remove{flex:0 0 30px;width:30px;min-width:30px;min-height:0;margin:0;padding:0;border:1px solid rgba(59,93,69,.12);border-radius:9px;background:rgba(255,255,255,.62);color:#84947c;font-size:18px;line-height:1;box-shadow:none}
+.priority-remove:hover{color:#9a4e35;background:#f4e5db;border-color:rgba(154,78,53,.2)}
+html[data-theme="dark"] .priority-remove{background:#191b1b;border-color:#3a3e3f;color:#9aa79a}
+html[data-theme="dark"] .priority-remove:hover{background:#372923;border-color:#68463b;color:#d79a80}
+
+/* Read-only, on-demand nutrient-gap priorities in the existing pantry editor. */
+.nutrition-review-panel{margin:10px 0;padding:8px 10px;border:1px solid var(--line,#dce3d8);border-radius:10px}
+.nutrition-review-panel>summary{cursor:pointer;font-size:13px;font-weight:700;line-height:1.5}
+.nutrition-review-panel #nutrition-review-count{font-size:12px;opacity:.7}
+.nutrition-review-panel .field-help{font-size:11.5px;line-height:1.6;margin:8px 0}
+.nutrition-review-list{max-height:280px;overflow:auto;overscroll-behavior:contain;display:grid;gap:5px;min-width:0}
+.nutrition-review-item{display:grid;grid-template-columns:minmax(0,1fr);gap:3px;width:100%;min-width:0;margin:0;padding:8px;text-align:left;border:1px solid var(--line,#dce3d8);border-radius:8px;color:inherit;background:transparent;box-shadow:none}
+.nutrition-review-item strong,.nutrition-review-item small{white-space:normal;overflow-wrap:anywhere}
+.nutrition-review-item strong{font-size:12px}.nutrition-review-item small{font-size:11.5px;opacity:.8}
+/* Secondary review of numerical estimates, never interleaved with missing values. */
+.nutrition-review-estimates{border:1px solid var(--line,#dce3d8);border-radius:8px;padding:7px 8px;margin-bottom:3px}
+.nutrition-review-estimates>summary{cursor:pointer;font-size:12px;line-height:1.5;font-weight:600}
+.nutrition-review-estimate-items{display:grid;gap:5px}
+.nutrition-review-estimates .field-help{margin:7px 0}
+.nutrition-review-unmentioned{border:1px solid var(--line,#dce3d8);border-radius:8px;padding:7px 8px;margin-bottom:3px}
+.nutrition-review-unmentioned>summary{cursor:pointer;font-size:12px;line-height:1.5;font-weight:600}
+.nutrition-review-unmentioned-items{display:grid;gap:5px}
+.nutrition-review-unmentioned .field-help{margin:7px 0}
+
+
+
+/* The priority editor is owner-only; sharing must not expose edit affordances. */
+html:not([data-access="owner"]) .nutrition-review-panel{display:none}
+
+/* The nutrient research queue is secondary to searching and adding stock.
+   Keep the UI short; deeper results are shown only on explicit request. */
+.nutrition-review-panel{margin-top:14px}
+.nutrition-review-panel>summary{font-size:12px}
+.nutrition-review-panel .field-help{margin:5px 0 8px!important}
+.nutrition-review-item{padding:7px 8px;gap:2px}
+#nutrition-review-more,#nutrition-estimates-more{font-size:11px;min-height:32px;margin-top:6px}

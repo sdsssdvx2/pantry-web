@@ -1,0 +1,29 @@
+[
+  {
+    "source": "main",
+    "index": 0,
+    "line": 1,
+    "title": "• 달걀말이",
+    "status": "등록",
+    "reason": "샘플 레시피로 등록.",
+    "original": "• 달걀말이"
+  },
+  {
+    "source": "main",
+    "index": 1,
+    "line": 5,
+    "title": "• 꿀 레몬차",
+    "status": "등록",
+    "reason": "샘플 레시피로 승격.",
+    "original": "• 꿀 레몬차\n레몬즙 + 꿀 + 따뜻한 물"
+  },
+  {
+    "source": "main",
+    "index": 2,
+    "line": 9,
+    "title": "• 면 삶기 메모",
+    "status": "참고 보관",
+    "reason": "조리 팁이라 참고 기록으로 보관.",
+    "original": "• 면 삶기 메모\n물 1L에 소금 10g."
+  }
+]

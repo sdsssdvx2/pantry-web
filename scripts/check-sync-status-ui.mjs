@@ -1,0 +1,30 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+
+const fail=message=>{throw new Error(message);};
+const expect=(condition,message)=>{if(!condition)fail(message);};
+execFileSync(process.execPath,['--check','public/sync-status-ui.js'],{stdio:'inherit'});
+const source=fs.readFileSync('public/sync-status-ui.js','utf8');
+const sync=fs.readFileSync('public/cloud-sync.js','utf8');
+const bootstrap=fs.readFileSync('public/bootstrap.js','utf8');
+
+expect(source.includes("import {canSaveKitchenState,getSyncStatus} from './cloud-sync.js';"),'Sync status UI must read access mode and the current status from cloud-sync');
+expect(source.includes("document.querySelector('.storage-scope')"),'Sync status UI must own storage-scope painting');
+expect(!source.includes('save-state'),'Sync status UI must not depend on the removed pantry heading status element');
+expect(source.includes("document.getElementById('pantry-sync-status')"),'Sync status UI must own the compact pantry footer status');
+expect(source.includes("document.getElementById('pantry-sync-text')"),'Sync status UI must own the compact pantry footer wording');
+expect(source.includes("footer.dataset.syncKind=readOnly?'readonly':status.kind"),'Pantry sync footer must expose status kind for restrained visual state');
+expect(source.includes("readOnly?'최신 서버 상태'"),'Read-only pantry sync wording must stay concise');
+expect(source.includes("idle:'서버 동기화'")&&source.includes("ok:'서버 동기화'")&&source.includes("remote:'서버 동기화'"),'Healthy owner sync states must collapse to the short server-sync label');
+expect(source.includes("pending:'서버 동기화 대기'")&&source.includes("syncing:'서버 동기화 중…'"),'Active owner sync states must retain concise progress wording');
+expect(source.includes("conflict:'동기화 충돌 · 복구본 보관됨'"),'Conflict footer wording must preserve the recovery-copy signal');
+expect(source.includes("window.addEventListener('mlk-sync-status',paintStatus)"),'Sync status UI must subscribe to core sync status events');
+expect(source.includes('const status=event?.detail||getSyncStatus();'),'Sync status UI must paint the latest status immediately when installed');
+expect(source.includes("const shortText=readOnly?'최신 서버 상태'"),'Read-only sync status wording must remain stable');
+expect(!sync.includes("document.querySelector('.storage-scope')")&&!sync.includes("document.getElementById('save-state')"),'Cloud sync core must not paint storage DOM');
+expect(!sync.includes('function paintStatus()')&&!sync.includes('installSyncStatusUI'),'Cloud sync core must not re-own sync status UI');
+expect(sync.includes('export function getSyncStatus()'),'Cloud sync core must expose its latest status without exposing DOM behavior');
+expect(sync.includes("window.addEventListener('beforeunload', () => { if (pollTimer) clearInterval(pollTimer); }, { once: true });"),'Polling cleanup must remain in the sync lifecycle after UI extraction');
+expect(bootstrap.includes("import { installSyncStatusUI } from './sync-status-ui.js"),'Bootstrap must install the extracted sync status UI');
+expect(bootstrap.indexOf('await initCloudSync({ readOnly: !owner });')<bootstrap.indexOf('installSyncStatusUI();'),'Sync initialization must still precede status UI installation');
+console.log('Sync status UI boundary check passed.');

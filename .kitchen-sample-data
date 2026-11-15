@@ -1,0 +1,2 @@
+This tree ships a small neutral sample dataset instead of real kitchen data.
+Production deploys are refused while this file exists (scripts/sample-data.mjs).

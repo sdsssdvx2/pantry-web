@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(fileURLToPath(url),'utf8'))});
+const {recipes}=await import('../public/data.js');
+const {inspectRefresh,applyRefresh,undoRefresh,validateRefreshPlan}=await import('../public/recipe-refresh.js');
+const custom={id:'user-fixture',name:'시험',category:'side',effort:1,time:5,required:['소금'],steps:['소금 1ml'],note:'개인 메모',custom:true};
+const c={builtInRecipes:recipes,customRecipes:[custom],sourceEdits:[],recipeGroupMeta:{},hiddenSources:[],hiddenVariants:[],purgedVariants:[],ratings:{},pantry:[],stockOverrides:{},selectedVariants:{}};
+const plan={id:'test',version:1,patches:[{sourceId:custom.id,variantKey:null,before:'소금 1ml',after:'소금 1g'}]};
+assert.equal(inspectRefresh(c,plan)[0].status,'ready');
+const next=applyRefresh(c,plan);assert.equal(next.receipt.length,1);assert.equal(c.customRecipes[0].steps[0],'소금 1ml');assert.equal(next.customRecipes[0].note,'개인 메모');
+assert.equal(inspectRefresh({...c,...next},plan)[0].status,'applied');
+assert.equal(applyRefresh({...c,...next},plan).receipt.length,0);
+assert.deepEqual(undoRefresh({...c,...next},next.receipt).customRecipes,c.customRecipes);
+const changed={...c,customRecipes:[{...custom,steps:['소금 2g']}]};assert.equal(inspectRefresh(changed,plan)[0].status,'changed');assert.equal(applyRefresh(changed,plan).receipt.length,0);
+const afterEdit={...c,...next,customRecipes:[{...next.customRecipes[0],note:'정비 후 메모'}]};assert.equal(undoRefresh(afterEdit,next.receipt).reverted,0);
+assert.throws(()=>validateRefreshPlan({...plan,patches:[...plan.patches,...plan.patches]}));
+// Built-in variants become individual edits, and undo removes only that edit.
+const source=recipes.find(r=>r.variants?.length),variant=source.variants[0];
+const sourcePlan={id:'source',version:1,patches:[{sourceId:source.id,variantKey:variant.key,before:variant.original,after:'[재료]\n소금 1g\n[조리]\n1. 섞기.'}]};
+const sourceNext=applyRefresh(c,sourcePlan);assert.equal(sourceNext.receipt.length,1);assert.equal(sourceNext.sourceEdits.length,1);
+assert.equal(undoRefresh({...c,...sourceNext},sourceNext.receipt).sourceEdits.length,0);
+assert.equal(applyRefresh({...c,hiddenSources:[source.id]},sourcePlan).receipt.length,0);
+console.log('Refresh applies only unchanged visible records, preserves notes, validates state, and reverses safely.');

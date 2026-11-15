@@ -1,0 +1,146 @@
+/* Owner/share management UI. Keep presentation out of runtime JS modules. */
+html:not([data-access]) .private{visibility:hidden}
+html:not([data-access]) [data-stock],
+html:not([data-access]) [data-priority-stock]{visibility:hidden}
+html:not([data-access]) #add-form,
+html:not([data-access]) .backup-row,
+html:not([data-access]) #add-recipe,
+html:not([data-access]) #open-recipe-backup,
+html:not([data-access]) #open-curation,
+html:not([data-access]) .manage-menu,
+html:not([data-access]) .my-recipes-toggle,
+html:not([data-access]) .recipe-manage,
+html:not([data-access]) [data-empty="pantry"],
+html:not([data-access]) #ingredient-history>.field-help,
+html:not([data-access]) [data-remove],
+html:not([data-access]) [data-history-restore],
+html:not([data-access]) [data-history-delete],
+html:not([data-access]) .recipe-rating button,
+html:not([data-access]) [data-edit-source],
+html:not([data-access]) [data-edit-custom],
+html:not([data-access]) [data-delete],
+html:not([data-access]) [data-hide],
+html:not([data-access]) [data-unhide],
+html:not([data-access]) #add-note,
+html:not([data-access]) [data-edit-note],
+html:not([data-access]) [data-archive]{display:none!important}
+
+html[data-access="shared-viewer"] #add-form,
+html[data-access="shared-viewer"] .backup-row,
+html[data-access="shared-viewer"] #add-recipe,
+html[data-access="shared-viewer"] #open-recipe-backup,
+html[data-access="shared-viewer"] #open-curation,
+html[data-access="shared-viewer"] .manage-menu,
+html[data-access="shared-viewer"] .my-recipes-toggle,
+html[data-access="shared-viewer"] .recipe-manage,
+html[data-access="shared-viewer"] [data-empty="pantry"],
+html[data-access="shared-viewer"] #ingredient-history>.field-help,
+html[data-access="shared-viewer"] [data-remove],
+html[data-access="shared-viewer"] [data-history-restore],
+html[data-access="shared-viewer"] [data-history-delete],
+html[data-access="shared-viewer"] .recipe-rating button,
+html[data-access="shared-viewer"] [data-edit-source],
+html[data-access="shared-viewer"] [data-edit-custom],
+html[data-access="shared-viewer"] [data-delete],
+html[data-access="shared-viewer"] [data-hide],
+html[data-access="shared-viewer"] [data-unhide],
+html[data-access="shared-viewer"] #add-note,
+html[data-access="shared-viewer"] [data-edit-note],
+html[data-access="shared-viewer"] [data-archive]{display:none!important}
+
+.share-manager-dialog{width:min(92vw,820px)}
+.share-list{display:grid;gap:10px;margin-top:10px}
+.share-list-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 2px}
+.share-list-heading h3{margin:0;font-size:.95rem}
+.share-list-heading button{font-size:.78rem}
+.share-row{border:1px solid color-mix(in srgb,currentColor 16%,transparent);border-radius:14px;padding:14px;display:grid;gap:8px}
+.share-row-top{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}
+.share-meta{font-size:.82rem;opacity:.72;line-height:1.5}
+.share-url{display:flex;gap:8px;align-items:center}
+.share-url input{min-width:0;flex:1;font-size:.8rem}
+.share-url-label{font-size:.78rem;font-weight:700;min-width:116px}
+.share-actions{display:flex;gap:8px;flex-wrap:wrap}
+.share-actions button{width:auto}
+.share-scope{font-size:.78rem;padding:3px 7px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.ai-prompt-actions{display:flex;gap:8px;flex-wrap:wrap;padding-top:4px;border-top:1px dashed color-mix(in srgb,currentColor 14%,transparent)}
+.ai-prompt-actions span{width:100%;font-size:.78rem;font-weight:700;opacity:.76}
+.ai-prompt-actions button{width:auto}
+.share-create-section{margin-top:20px;padding-top:16px;border-top:1px solid color-mix(in srgb,currentColor 14%,transparent)}
+.share-create-section h3{margin:0 0 6px;font-size:.95rem}
+.share-create-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:10px;align-items:end;margin:10px 0 0}
+.share-create-grid label{display:grid;gap:6px;font-size:.86rem}
+.share-create-grid input,.share-create-grid select{width:100%}
+
+.access-panel{margin-top:20px;padding-top:18px;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent);display:grid;gap:12px}
+.access-panel h3,.access-panel h4{margin:0}
+.access-panel h4{font-size:.95rem}
+.access-section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.access-section-heading button{width:auto;font-size:.78rem}
+.access-warning{border:1px solid #c77b5a66;background:#c77b5a12;border-radius:14px;padding:12px;display:grid;gap:8px}
+.access-warning strong{color:#9f4f36}
+.access-warning button{width:auto}
+.access-list{display:grid;gap:7px}
+.access-device{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border:1px solid color-mix(in srgb,currentColor 13%,transparent);border-radius:12px;padding:11px 12px}
+.access-device.is-current{border-color:color-mix(in srgb,var(--green) 38%,transparent);background:color-mix(in srgb,var(--green) 5%,transparent)}
+.access-device-main{display:grid;gap:5px;min-width:0}
+.access-device-main>div:first-child{display:grid;gap:2px}
+.access-device-main small{font-size:.78rem;opacity:.68}
+.access-device-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.access-device-actions button{width:auto;white-space:nowrap}
+.access-revoke{border-color:#b84c3766!important;color:#a94835!important}
+.access-event{display:grid;grid-template-columns:minmax(135px,.8fr) 1.7fr;gap:12px;padding:9px 0;border-bottom:1px solid color-mix(in srgb,currentColor 9%,transparent)}
+.access-event>div:first-child{display:grid;gap:2px}
+.access-event small{opacity:.68}
+.access-detail{display:flex;gap:8px 12px;flex-wrap:wrap;font-size:.82rem;opacity:.78}
+.access-empty{font-size:.84rem;opacity:.68;margin:0}
+.access-badge{display:inline-block;margin-left:5px;width:8px;height:8px;border-radius:50%;background:#b84c37;vertical-align:middle}
+.access-more{margin-top:4px}
+.access-more>summary{cursor:pointer;font-size:.82rem;color:var(--green);padding:8px 0}
+.access-list-rest{margin-top:2px}
+
+.server-backups{margin-top:28px;padding-top:24px;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.server-backup-head{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.server-backup-head h3{margin:0 0 6px}
+.server-backup-head p{margin:0;max-width:620px}
+.server-backup-actions{display:flex;gap:8px;flex-wrap:wrap}
+.server-backup-actions button{width:auto}
+.server-backup-current{margin:14px 0;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,currentColor 7%,transparent);font-size:.9rem}
+.server-backup-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.server-backup-list{display:grid;gap:8px;max-height:380px;overflow:auto;padding-right:4px}
+.server-backup-row{border:1px solid color-mix(in srgb,currentColor 14%,transparent);border-radius:12px;padding:11px 12px;display:grid;gap:8px}
+.server-backup-row-main{display:flex;gap:10px;justify-content:space-between;align-items:center}
+.server-backup-row strong{display:block;font-size:.9rem}
+.server-backup-meta{font-size:.78rem;opacity:.72;line-height:1.45;margin-top:3px}
+.server-backup-row button{width:auto;white-space:nowrap}
+.server-backup-row-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.history-diff{padding:9px 11px;border-radius:10px;background:color-mix(in srgb,currentColor 6%,transparent);font-size:.8rem;line-height:1.55}
+.history-diff ul{margin:0;padding-left:18px}
+.history-diff p{margin:0;opacity:.72}
+.server-backup-note{font-size:.82rem;opacity:.72;line-height:1.55;margin-top:12px}
+
+@media(max-width:760px){
+  .share-manager-dialog{width:calc(100vw - 18px)}
+  .share-list-heading{margin-top:10px}
+  .share-create-grid{grid-template-columns:1fr}
+  .share-row-top{align-items:stretch;flex-direction:column}
+  .share-url{align-items:stretch;flex-direction:column}
+  .share-url-label{min-width:0}
+  .access-section-heading{align-items:flex-start;flex-direction:column}
+  .access-device{flex-direction:column}
+  .access-device-actions{width:100%}
+  .server-backup-columns{grid-template-columns:1fr}
+  .server-backup-row-main{align-items:flex-start;flex-direction:column}
+  .server-backup-row-actions{justify-content:flex-start}
+}
+
+@media(max-width:620px){
+  .access-event{grid-template-columns:1fr}
+  .access-detail{display:grid;gap:2px}
+}
+
+html[data-theme="dark"] .access-warning{background:rgba(199,123,90,.10)}
+html[data-theme="dark"] .access-warning strong{color:#d98e70}
+html[data-theme="dark"] .access-device.is-current{background:rgba(85,130,96,.08)}
+html[data-theme="dark"] .access-revoke{color:#df8d7a!important}
+html[data-theme="dark"] .server-backup-current,
+html[data-theme="dark"] .history-diff{background:rgba(255,255,255,.045)}

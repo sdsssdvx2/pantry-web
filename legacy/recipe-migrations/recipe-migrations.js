@@ -1,0 +1,21 @@
+// Sample promoted recipe. The private deployment repository keeps the full
+// migration history; this public tree carries one neutral example.
+export const migratedNoteKeys = new Set(['main-1']);
+
+export const migratedRecipes = [
+  {
+    id:'sample-promoted-1',
+    name:'꿀 레몬차',
+    category:'drink', effort:1, time:3,
+    required:['레몬즙','꿀'],
+    optional:[],
+    summary:'레몬즙과 꿀을 따뜻한 물에 녹여요.',
+    steps:['컵에 레몬즙과 꿀을 넣고 따뜻한 물을 부어 저어요.'],
+    note:'', source:true,
+    variants:[
+      {key:'note-1-1',label:'기본',original:'• 꿀 레몬차\n레몬즙 + 꿀 + 따뜻한 물',required:['레몬즙','꿀'],optional:[],time:3,sourceFile:'sample-notes.txt',sourceLine:5,sourceTitle:'• 꿀 레몬차'}
+    ]
+  }
+];
+
+export const isMigratedNote = record => migratedNoteKeys.has(`${record?.source}-${record?.index}`);

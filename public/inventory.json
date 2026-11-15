@@ -1,0 +1,110 @@
+[
+  {
+    "name": "스파게티면",
+    "group": 0,
+    "locations": [
+      "실온 · 식재료"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "달걀",
+    "group": 3,
+    "locations": [
+      "냉장고 · 안쪽"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "감자",
+    "group": 2,
+    "locations": [
+      "실온 · 식재료"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "양파",
+    "group": 2,
+    "locations": [
+      "실온 · 식재료"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "대파",
+    "group": 2,
+    "locations": [
+      "냉장고 · 야채칸"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "두부",
+    "group": 3,
+    "locations": [
+      "냉장고 · 안쪽"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "된장",
+    "group": 4,
+    "locations": [
+      "냉장고 · 문짝"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "토마토 소스",
+    "group": 4,
+    "locations": [
+      "실온 · 소스"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "올리브유",
+    "group": 4,
+    "locations": [
+      "실온 · 기름"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "식용유",
+    "group": 4,
+    "locations": [
+      "실온 · 기름"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "소금",
+    "group": 4,
+    "locations": [
+      "실온 · 향신료·조미료"
+    ],
+    "notes": [],
+    "status": "available"
+  },
+  {
+    "name": "마늘",
+    "group": 2,
+    "locations": [
+      "냉동실 · 1 고기·채소"
+    ],
+    "notes": [],
+    "status": "available"
+  }
+]

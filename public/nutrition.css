@@ -1,0 +1,86 @@
+.nutrition-summary,.nutrition-editor,.nutrition-stock{border:1px solid var(--line,#dce3d8);border-radius:10px;padding:12px 14px;margin:14px 0;background:var(--surface,#fafbf7);color:var(--ink,#26392d)}
+.nutrition-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}.nutrition-heading h3{margin:0!important;font-size:.9rem}.nutrition-heading>span,.nutrition-per-serving,.nutrition-source{font-size:.8rem;line-height:1.6;color:var(--muted,#687568)}
+.nutrition-totals{display:grid;grid-template-columns:1fr;gap:3px;margin:7px 0 4px}.nutrition-totals>div{display:flex;align-items:baseline;justify-content:space-between;gap:7px;flex-wrap:wrap}.nutrition-totals span{font-size:.8rem;color:var(--muted,#687568)}.nutrition-totals strong{font-size:.9rem;font-variant-numeric:tabular-nums;line-height:1.35}.nutrition-per-serving{margin:10px 0}.nutrition-summary summary,.nutrition-editor summary,.nutrition-stock summary{cursor:pointer;font-weight:600;line-height:1.6}.nutrition-summary details{margin-top:9px}
+.nutrition-breakdown-row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line,#dce3d8);padding:12px 0;font-size:.85rem}.nutrition-breakdown-row small{display:block;color:var(--muted,#687568);line-height:1.7}.nutrition-breakdown-row>span{white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}.nutrition-warnings{font-size:.82rem;line-height:1.8;padding-left:20px}
+.nutrition-field-head,.nutrition-field-row{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:8px;align-items:center}.nutrition-field-head{font-size:.78rem;color:var(--muted,#687568);margin:14px 0 7px}.nutrition-field-row{padding:9px 0;border-top:1px solid var(--line,#dce3d8)}.nutrition-field-row label{margin:0!important}.nutrition-field-row label small{display:block;font-size:.72rem;color:var(--muted,#687568)}.nutrition-source{grid-column:1/-1;overflow-wrap:anywhere}.nutrition-source a{color:inherit;text-decoration:underline}.nutrition-field-row input,.nutrition-field-row select{width:100%;min-width:0;padding:9px 7px!important}.nutrition-conversion{margin-top:9px}.nutrition-conversion label{display:block;margin-top:12px}.nutrition-heading input[data-servings]{display:inline-block;width:80px;margin-left:8px}.nutrition-edit-row{padding:14px 0;border-bottom:1px solid var(--line,#dce3d8)}.nutrition-include{display:flex!important;align-items:center;gap:8px;font-weight:600}.nutrition-include input{width:18px!important;height:18px!important;accent-color:#3b5d45}.nutrition-row-controls{display:grid;grid-template-columns:90px 90px 1fr;gap:10px}.nutrition-row-controls label{font-size:.75rem;margin:8px 0!important}.nutrition-row-controls input{min-width:0;width:100%;padding:8px!important}.nutrition-edit-row>small{color:var(--muted,#687568);font-size:.78rem}.nutrition-editor .nutrition-summary{border:0;padding:0;margin:14px 0;background:none}
+/* Scope typography above the dialog's legacy paragraph/list styles. */
+#dialog-content .cooking-layout{font-size:15px;line-height:1.5;margin:8px 0 12px;white-space:normal;overflow-wrap:anywhere}
+#dialog-content .cooking-layout p{font-size:inherit;line-height:inherit;color:inherit;margin:1px 0}
+#dialog-content .cooking-layout .cooking-section-title{font-size:inherit;font-weight:700;color:var(--green);margin:10px 0 4px;padding:0 0 2px;border-bottom:1px solid var(--line)}
+#dialog-content .cooking-ingredient-list{background:var(--soft);border-radius:8px;padding:5px 9px;margin:4px 0 8px}
+#dialog-content .cooking-step-list{list-style:none;padding:0;margin:8px 0}
+#dialog-content .cooking-step-list li{display:flex;align-items:flex-start;gap:9px;margin:0;padding:4px 0;border-bottom:1px solid var(--line);font-size:inherit;line-height:inherit;color:inherit;counter-increment:none}
+.cooking-step-number{flex:0 0 1.5em;color:var(--green);font-size:inherit;font-weight:700;line-height:inherit;text-align:center}
+.cooking-measure{font-weight:700}.cooking-heat{font-weight:600;text-decoration:underline;text-decoration-color:#b4c2aa;text-underline-offset:3px}
+#dialog-content .cook-mode-record{white-space:normal;padding:0;margin-top:10px}
+#dialog-content .cook-mode-record .cooking-layout{font-size:var(--cook-font-size,19px);line-height:1.45;margin:6px 0}
+#dialog-content .cook-mode-record .cooking-ingredient-list{font-size:max(16px,calc(var(--cook-font-size,19px) - 1px));padding:5px 9px}
+#dialog-content .cook-mode-record .cooking-step-list li{padding:4px 0}
+#dialog-content .cook-mode-record .cooking-section-title{margin-top:9px}
+.nutrition-references{margin-top:12px;font-size:.8rem}.nutrition-references a{color:inherit}.nutrition-product-info{margin-top:8px}.recipe-energy{font-variant-numeric:tabular-nums}
+html[data-theme="dark"] .nutrition-summary,html[data-theme="dark"] .nutrition-editor,html[data-theme="dark"] .nutrition-stock{background:#202721;border-color:#3b443c;color:#e8eee7}html[data-theme="dark"] .cooking-ingredient-list{background:#242b24}html[data-theme="dark"] .cooking-section-title{color:#b5cba7}html[data-theme="dark"] .nutrition-heading>span,html[data-theme="dark"] .nutrition-source,html[data-theme="dark"] .nutrition-per-serving{color:#b9c3b5}
+@media(max-width:600px){.nutrition-summary,.nutrition-editor,.nutrition-stock{padding:14px}.nutrition-totals strong{font-size:.9rem}.nutrition-field-head,.nutrition-field-row{gap:5px;grid-template-columns:1.15fr 1fr .85fr 1fr}.nutrition-field-row label{font-size:.8rem}.nutrition-row-controls{grid-template-columns:1fr 1fr}.nutrition-product-label{grid-column:1/-1}.cooking-ingredient-list{padding:10px 12px}.cooking-step-list li{gap:10px}.nutrition-heading>label{font-size:.85rem}}
+
+.nutrition-other table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:12px}.nutrition-other th,.nutrition-other td{padding:8px 4px;border-bottom:1px solid var(--line,#dce3d8);text-align:right}.nutrition-other th:first-child{text-align:left}.nutrition-other tbody th{font-weight:500}
+
+#dialog-content .cooking-step-list li::before{content:none;display:none}#dialog-content .cooking-step-list li{padding-left:0;position:static}.cooking-step-list li::marker{content:""}
+
+.nutrition-other td{font-size:.78rem;white-space:normal;word-break:keep-all}.nutrition-other th:first-child{white-space:nowrap}
+
+#recipe-refresh-dialog{width:min(1000px,95vw);max-height:90vh}.refresh-row{border-bottom:1px solid var(--line,#ddd);padding:12px 0}.refresh-row summary{cursor:pointer}.refresh-row small{opacity:.7}.refresh-comparison{display:grid;grid-template-columns:1fr 1fr;gap:20px}.refresh-comparison pre{font:inherit;font-size:.86rem;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}.refresh-row input{width:auto} @media(max-width:650px){.refresh-comparison{grid-template-columns:1fr}}
+
+.nutrition-heading h3 small{font-size:.75rem;font-weight:400;color:var(--muted);margin-left:4px}
+.nutrition-stock>summary{font-size:.9rem}.nutrition-stock-brief{display:block;font-size:.8rem;font-weight:400;color:var(--muted);margin:2px 0 0 16px;line-height:1.5}
+.nutrition-stock[open]>summary .nutrition-stock-brief{display:none}.nutrition-extra-fields{margin-top:8px;font-size:.85rem}.nutrition-extra-fields .nutrition-field-row:first-child{margin-top:8px}
+.nutrition-expanded>summary{font-size:.8rem;font-weight:500}.nutrition-editor .nutrition-summary{margin:8px 0 0}.nutrition-editor .nutrition-summary>.nutrition-heading{display:none}
+.cook-font-controls{display:inline-flex;gap:2px;margin-left:auto}.cook-font-controls button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:5px;min-width:32px;min-height:32px;padding:3px;font-size:13px}.cook-font-controls button:disabled{opacity:.4}
+.cook-mode-top-actions{flex:1;flex-wrap:wrap}.cook-mode-body .dialog-top{display:flex}.cook-mode-body .cook-mode-top-actions .status-badge{display:none}
+
+/* Explicit owner evidence correction; automatic source data stays immutable. */
+.nutrition-proof-fields{grid-column:1/-1;margin:2px 0 4px;font-size:.78rem}
+.nutrition-proof-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:9px 0}
+.nutrition-proof-meta label:last-child{grid-column:1/-1}
+.nutrition-proof-meta input,.nutrition-proof-meta textarea,.nutrition-proof-measure input,.nutrition-proof-measure select,.nutrition-proof-conversions input,.nutrition-proof-conversions textarea{width:100%;min-width:0;box-sizing:border-box;padding:8px!important}
+.nutrition-proof-meta label,.nutrition-proof-measure label,.nutrition-proof-conversions label{display:block;font-size:.75rem}
+.nutrition-row-proof{border:1px solid var(--line,#dce3d8);padding:10px;border-radius:8px;margin:10px 0;background:var(--surface,#fafbf7)}
+.nutrition-proof-row{border-top:1px solid var(--line,#dce3d8);padding:9px 0}
+.nutrition-proof-row>strong{display:block;font-size:.78rem;margin-bottom:6px}
+.nutrition-proof-measure{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.nutrition-proof-conversions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nutrition-proof-conversions label:last-child{grid-column:1/-1}
+.nutrition-proof-error{font-size:.78rem;color:#b42318;white-space:pre-wrap}
+@media(max-width:600px){.nutrition-proof-meta,.nutrition-proof-conversions{grid-template-columns:1fr}.nutrition-proof-measure{grid-template-columns:1fr 1fr}.nutrition-proof-measure label:last-child{grid-column:1/-1}.nutrition-proof-meta label:last-child,.nutrition-proof-conversions label:last-child{grid-column:auto}}
+
+.nutrition-research{margin:9px 0;padding:9px;border:1px solid var(--line,#dce3d8);border-radius:6px;font-size:.8rem}
+.nutrition-research label{display:block;margin:7px 0!important;font-size:.76rem}
+.nutrition-research input,.nutrition-research textarea{display:block;width:100%;min-width:0;box-sizing:border-box;padding:8px!important}
+.nutrition-research .field-help{margin:6px 0 0}
+
+/* Missing required amounts: only verified owner measurements. */
+.nutrition-missing-quantity{margin:12px 0;padding:12px;border:1px solid var(--line,#dce3d8);border-radius:9px}
+.nutrition-missing-quantity h4{margin:0 0 8px;font-size:.9rem}
+.nutrition-missing-quantity-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;padding:8px 0;border-top:1px solid var(--line,#dce3d8)}
+.nutrition-missing-quantity-row label{font-size:.8rem;min-width:0}
+.nutrition-missing-quantity-row input{box-sizing:border-box;display:block;width:100%;min-width:0;margin-top:5px;padding:8px}
+.nutrition-missing-quantity-row [data-missing-error]{grid-column:1/-1;color:#a33;overflow-wrap:anywhere}
+@media(max-width:600px){.nutrition-missing-quantity-row{grid-template-columns:minmax(0,1fr)}}
+
+.nutrition-measured-feedback{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:9px 0;padding:9px 10px;border:1px solid var(--line,#dce3d8);border-radius:8px;font-size:.82rem}
+.nutrition-measured-feedback button{min-height:32px}
+
+
+/* Owner-only K-FIND candidate lookup with consent-gated unsaved evidence staging. */
+.nutrition-kfind-review{margin:10px 0;border:1px solid var(--line,#dce3d8);border-radius:8px;padding:9px;font-size:.82rem}
+.nutrition-kfind-review>summary{font-weight:600;cursor:pointer}
+.nutrition-kfind-review label{display:block;font-size:.8rem;min-width:0}
+.nutrition-kfind-review input{display:block;box-sizing:border-box;width:100%;min-width:0;margin:5px 0 9px;padding:7px}
+.nutrition-kfind-review input[type=checkbox]{display:inline-block;width:auto;min-width:0;vertical-align:middle;margin:0 7px 0 0;padding:0}
+.nutrition-kfind-review [data-kfind-review]{margin-top:12px;padding-top:10px;border-top:1px solid var(--line,#dce3d8)}
+.nutrition-kfind-review [data-kfind-review] button{margin:6px 0}
+.nutrition-kfind-filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nutrition-kfind-filters label:first-child{grid-column:1/-1}
+.nutrition-kfind-results{max-width:100%;overflow:auto}
+.nutrition-kfind-results table{width:100%;min-width:700px;border-collapse:collapse;font-size:.73rem}
+.nutrition-kfind-results th,.nutrition-kfind-results td{border:1px solid var(--line,#dce3d8);padding:7px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.nutrition-kfind-warning td:last-child{font-weight:600}
+@media(max-width:600px){.nutrition-kfind-filters{grid-template-columns:1fr}.nutrition-kfind-filters label:first-child{grid-column:auto}}
